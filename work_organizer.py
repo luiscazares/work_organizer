@@ -27,16 +27,13 @@ def sorter(counter):
     for file in glob.glob("*"):
         split_file = file.split(" ")
         if not os.path.isdir(file):
-            if counter == 0:
+            if (counter == 0) or (counter == 1):
                 ref = split_file[0]
-            elif counter == 1:
-                ref = split_file[0]
-            elif counter == 1:
-                ref = split_file[2]
             elif counter == 2:
+                ref = split_file[2]
+            elif counter == 3:
                 ref = "{0} {1}".format(split_file[2], split_file[3])
             else:
-                print ("{0} {1}".format(file, "is not a valid file"))
                 return
 
             source = "{0}/{1}".format(os.path.dirname(os.path.realpath("__file__")), file)
@@ -44,14 +41,18 @@ def sorter(counter):
             if counter == 0:
                 if re.match(r'^[0-9]\w', ref):
                     destination = "E:/Orders/{0}".format(file)
-            else:    
+                else:
+                    destination = "E:/{0}/{1}".format(ref, file)
+            else:
                 destination = "{0}/{1}/{2}".format(os.path.dirname(os.path.realpath("__file__")), ref, file)
 
             # move file or create folder then move file
-            if not re.match(r'^[0-9]\w', ref):
+            if counter == 0:
+                shutil.move(source, destination)
+            else:
                 if not os.path.exists(ref):
                     os.makedirs(ref)
-            shutil.move(source, destination)
+                shutil.move(source, destination)
 
 if __name__ == '__main__':
     organizer()
