@@ -4,25 +4,6 @@ import shutil
 import re
 
 
-def organizer():
-    counter = 0
-    # Start in Scan and move to doc drive.
-    os.chdir('C:/Users/luisc/Documents/Scan')
-    sorter(counter)
-    counter += 1    
-    # Move to Orders into specific order folder
-    os.chdir('E:/Orders')
-    sorter(counter)
-    counter += 1
-    # Move Checks into specific company folder
-    os.chdir('E:/Check')
-    sorter(counter)
-    counter += 1
-    # Move Timesheets into specific driver folder
-    os.chdir('E:/Timesheet')
-    sorter(counter)
-    return
-
 def sorter(counter):
     for file in glob.glob("*"):
         split_file = file.split(" ")
@@ -55,4 +36,19 @@ def sorter(counter):
                 shutil.move(source, destination)
 
 if __name__ == '__main__':
-    organizer()
+    counter = 0
+    # Start in Scan and move to doc drive.
+    os.chdir('C:/Users/luisc/Documents/Scan')
+    sorter(counter)
+    counter += 1    
+    # Move to Orders into specific order folder
+    os.chdir('E:/Orders')
+    sorter(counter)
+    counter += 1
+    # Move Checks into specific company folder
+    os.chdir('E:/Check')
+    sorter(counter)
+    counter += 1
+    # Move Timesheets into specific driver folder
+    os.chdir('E:/Timesheet')
+    sorter(counter)
