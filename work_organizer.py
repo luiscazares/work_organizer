@@ -39,10 +39,10 @@ def organizer(folder):
                     destination = "E:/Orders/{0}".format(file)
             else:    
                 destination = "{0}/{1}/{2}".format(os.path.dirname(os.path.realpath("__file__")), ref, file)
-                print (destination)    
+                print (destination) 
             # move file or create folder then move file
-            #if not re.match(r'^[0-9]\w', ref):
-            if not os.path.exists(ref):
-                os.makedirs(ref)
+            if not re.match(r'^[0-9]\w', ref):
+                if not os.path.exists(ref):
+                    os.makedirs(ref)
             shutil.move(source, destination)
             
