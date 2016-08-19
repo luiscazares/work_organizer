@@ -37,7 +37,7 @@ def sorter(iteration):
 
 if __name__ == '__main__':
     iteration = 0
-    # Start in Scan and move to doc drive.
+    # Start in Scan and move files to doc drive.
     os.chdir('C:/Users/luisc/Documents/Scan')
     sorter(iteration)
     iteration += 1    
