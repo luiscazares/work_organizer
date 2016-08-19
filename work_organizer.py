@@ -11,7 +11,7 @@ def sorter(counter):
             if (counter == 0) or (counter == 1):
                 ref = split_file[0]
             elif counter == 2:
-                ref = split_file[2]
+                ref = split_file[1]
             elif counter == 3:
                 ref = "{0} {1}".format(split_file[2], split_file[3])
             else:
