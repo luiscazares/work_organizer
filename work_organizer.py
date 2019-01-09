@@ -8,19 +8,24 @@ def sorter(iteration):
     for file in glob.glob("*"):
         split_file = file.split(" ")
         if not os.path.isdir(file):
+            # Initial iteration at scan or second iteration at Orders, grab initial ref
             if (iteration == 0) or (iteration == 1):
                 ref = split_file[0]
+            # Iteration at check, grab name of carrier
             elif iteration == 2:
                 ref = split_file[1]
+            # Iteration at timesheet, grab name of driver
             elif iteration == 3:
                 ref = "{0} {1}".format(split_file[2], split_file[3])
             else:
                 return
 
+            # Obtain realpath of current file for movement
             source = "{0}/{1}".format(os.path.dirname(os.path.realpath("__file__")), file)
 
             if iteration == 0:
-                if re.match(r'^[0-9]\w', ref):
+                # only looking to match a six digit order number
+                if re.match(r'^[0-9]{6,}', ref):
                     destination = "E:/Orders/{0}".format(file)
                 else:
                     destination = "E:/{0}/{1}".format(ref, file)
